@@ -4,6 +4,7 @@
 #include "ui_reviewapp.h"
 #include "reviewcardlistmodel.h"
 #include "reviewcard.h"
+#include "cardstyledelegate.h"
 
 class reviewapp : public QMainWindow
 {
@@ -16,8 +17,10 @@ public:
 private:
     Ui::reviewappClass ui;
     ReviewCardListModel* m_model;
+	CardStyleDelegate* m_delegate;
 
 private:
 	void setShowListType(ReviewCard::ShowListType type);
+
 };
 

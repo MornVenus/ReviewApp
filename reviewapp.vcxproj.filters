@@ -55,5 +55,8 @@
     <QtMoc Include="reviewcardlistmodel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="cardstyledelegate.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

@@ -9,6 +9,9 @@ reviewapp::reviewapp(QWidget *parent)
 	ui.cardListView->setModel(m_model);
 
 	setShowListType(ReviewCard::Review); //  default is review list
+
+	m_delegate = new CardStyleDelegate(this);
+	ui.cardListView->setItemDelegate(m_delegate);
 }
 
 reviewapp::~reviewapp()

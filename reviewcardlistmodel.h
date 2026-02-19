@@ -23,7 +23,7 @@ public:
 
 		if (role == Qt::UserRole + 1)
 		{
-			const ReviewCard* card = m_cards.at(index.row());
+			ReviewCard* card = m_cards.at(index.row());
 			return QVariant::fromValue(card);
 		}
 		else if (role == Qt::DisplayRole)
