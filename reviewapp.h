@@ -2,6 +2,8 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_reviewapp.h"
+#include "reviewcardlistmodel.h"
+#include "reviewcard.h"
 
 class reviewapp : public QMainWindow
 {
@@ -13,5 +15,9 @@ public:
 
 private:
     Ui::reviewappClass ui;
+    ReviewCardListModel* m_model;
+
+private:
+	void setShowListType(ReviewCard::ShowListType type);
 };
 
