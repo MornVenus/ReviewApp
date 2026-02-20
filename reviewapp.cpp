@@ -116,6 +116,9 @@ void ReviewApp::enableControls(bool enable)
 	ui.deleteBtn->setEnabled(enable);
 	ui.favBtn->setEnabled(enable);
 	ui.viewAnswerBtn->setEnabled(enable);
+	ui.hardBtn->setEnabled(enable);
+	ui.normalBtn->setEnabled(enable);
+	ui.easyBtn->setEnabled(enable);
 }
 
 void ReviewApp::on_actionAdd_triggered()
