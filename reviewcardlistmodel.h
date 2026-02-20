@@ -192,6 +192,33 @@ public:
 		}
 	}
 
+	QString remove(QModelIndex index)
+	{
+		QString error = "";
+		if (index.row() >= 0 && index.row() < m_cards.size())
+		{
+			beginRemoveRows(QModelIndex(), index.row(), index.row());
+			// delete from database
+
+			auto record = m_cards.at(index.row());
+			QSqlQuery query;
+			query.prepare("DELETE FROM records WHERE id = :ID");
+			query.bindValue(":ID", record->id);
+			if (query.exec())
+			{
+				delete record;
+				m_cards.removeAt(index.row());
+			}
+			else
+			{
+				error = query.lastError().text();
+			}
+
+			endRemoveRows();
+		}
+		return error;
+	}
+
 private:
 	QList<ReviewCard*> m_cards;
 	ReviewCard::ShowListType m_showListType;

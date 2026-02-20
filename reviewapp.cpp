@@ -111,6 +111,7 @@ void ReviewApp::on_editBtn_clicked()
 	if (!index.isValid()) return;
 
 	ReviewCard* card = index.data(Qt::UserRole + 1).value<ReviewCard*>();
+	if (!card) return;
 	EditDialog dialog(card);
 	dialog.setMinimumWidth(600);
 	dialog.setMinimumHeight(400);
@@ -145,6 +146,18 @@ void ReviewApp::on_editBtn_clicked()
 
 void ReviewApp::on_deleteBtn_clicked()
 {
+	auto index = ui.cardListView->currentIndex();
+	if (!index.isValid()) return;
+
+	if (QMessageBox::Ok == QMessageBox::warning(this, "Warning", "Are you sure you want to delete?"))
+	{
+		QModelIndex sourceIndex = m_filter->mapToSource(index);
+		QString error = m_model->remove(sourceIndex);
+		if (!error.isEmpty())
+		{
+			QMessageBox::critical(this, "Error", error);
+		}
+	}
 }
 
 void ReviewApp::on_favBtn_clicked(bool checked)
