@@ -31,12 +31,14 @@ private:
 
 private:
     void updateLevel(int increment);
+    void setShowListType(int level);
+    void enableControls(bool enable);
 
 private slots:
-	void on_actionAll_triggered() { m_model->setShowListType(ReviewCard::All); }
-    void on_actionReview_triggered() { m_model->setShowListType(ReviewCard::Review); }
-    void on_actionTest_triggered() { m_model->setShowListType(ReviewCard::Test); }
-    void on_actionFav_triggered() { m_model->setShowListType(ReviewCard::Fav); }
+	void on_actionAll_triggered() { setShowListType(ReviewCard::All); }
+    void on_actionReview_triggered() { setShowListType(ReviewCard::Review); }
+    void on_actionTest_triggered() { setShowListType(ReviewCard::Test); }
+    void on_actionFav_triggered() { setShowListType(ReviewCard::Fav); }
     void on_actionAdd_triggered();
 	void on_filterTextBox_textChanged(const QString& text) { m_filter->setFilterText(text); }
     void on_currentIndex_changed(const QModelIndex& current, const QModelIndex& previous);

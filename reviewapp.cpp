@@ -97,7 +97,25 @@ void ReviewApp::updateLevel(int increment)
 		QMessageBox::critical(this, "Error", query.lastError().text());
 		return;
 	}
-	m_model->setShowListType(-1);
+	setShowListType(-1);
+}
+
+void ReviewApp::setShowListType(int level)
+{
+	ui.favBtn->setChecked(false);
+	ui.viewAnswerBtn->setChecked(false);
+	ui.answerTextBox->setVisible(false);
+	ui.questionTextBox->clear();
+	enableControls(false);
+	m_model->setShowListType(level);
+}
+
+void ReviewApp::enableControls(bool enable)
+{
+	ui.editBtn->setEnabled(enable);
+	ui.deleteBtn->setEnabled(enable);
+	ui.favBtn->setEnabled(enable);
+	ui.viewAnswerBtn->setEnabled(enable);
 }
 
 void ReviewApp::on_actionAdd_triggered()
@@ -124,6 +142,8 @@ void ReviewApp::on_currentIndex_changed(const QModelIndex& current, const QModel
 	}
 	ReviewCard* card = current.data(Qt::UserRole + 1).value<ReviewCard*>();
 	if (!card) return;
+
+	enableControls(true);
 
 	ui.questionTextBox->setPlainText(card->question);
 	ui.answerTextBox->setMarkdown(card->answer);
