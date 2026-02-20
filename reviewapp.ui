@@ -71,6 +71,9 @@
             <property name="text">
              <string>查看答案</string>
             </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
          </layout>

@@ -97,7 +97,13 @@ void ReviewApp::on_actionAdd_triggered()
 void ReviewApp::on_currentIndex_changed(const QModelIndex& current, const QModelIndex& previous)
 {
 	Q_UNUSED(previous);
-	if (!current.isValid()) return;
+	ui.viewAnswerBtn->setChecked(false);
+	ui.answerTextBox->setVisible(false);
+	
+	if (!current.isValid())
+	{
+		return;
+	}
 	ReviewCard* card = current.data(Qt::UserRole + 1).value<ReviewCard*>();
 	if (!card) return;
 
@@ -186,7 +192,8 @@ void ReviewApp::on_favBtn_clicked(bool checked)
 	}
 }
 
-void ReviewApp::on_viewAnswerBtn_clicked()
+void ReviewApp::on_viewAnswerBtn_clicked(bool checked)
 {
+	ui.answerTextBox->setVisible(checked);
 }
 

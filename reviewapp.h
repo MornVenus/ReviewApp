@@ -43,6 +43,6 @@ private slots:
     void on_editBtn_clicked();
 	void on_deleteBtn_clicked();
 	void on_favBtn_clicked(bool checked);
-	void on_viewAnswerBtn_clicked();
+	void on_viewAnswerBtn_clicked(bool checked);
 };
 
