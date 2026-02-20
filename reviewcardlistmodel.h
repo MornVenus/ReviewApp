@@ -34,9 +34,10 @@ public:
 		return {};
 	}
 
-	void setShowListType(ReviewCard::ShowListType type)
+	void setShowListType(int type)
 	{
-		m_showListType = type;
+		if (type >= 0)
+		m_showListType = static_cast<ReviewCard::ShowListType>(type);
 		beginResetModel();
 		qDeleteAll(m_cards);
 		m_cards.clear();

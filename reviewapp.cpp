@@ -56,7 +56,7 @@ ReviewApp::ReviewApp(QWidget *parent)
 	}
 
 	m_model = new ReviewCardListModel(this);
-	setShowListType(ReviewCard::Review); //  default is review list
+	m_model->setShowListType(ReviewCard::Review); //  default is review list
 	m_filter = new ReviewFilter(this);
 	
 	m_filter->setSourceModel(m_model);
@@ -77,9 +77,27 @@ ReviewApp::ReviewApp(QWidget *parent)
 ReviewApp::~ReviewApp()
 {}
 
-void ReviewApp::setShowListType(ReviewCard::ShowListType type)
+void ReviewApp::updateLevel(int increment)
 {
-	m_model->setShowListType(type);
+	if (increment == 0) return;
+
+	ReviewCard* record = m_selectionModel->currentIndex().data(Qt::UserRole + 1).value<ReviewCard*>();
+	if (!record) return;
+	int level = record->level + increment;
+	if (level < 0) level = 0;
+	if (level > 8) level = 8;
+	record->level = static_cast<ReviewCard::ReviewLevel>(level);
+	QSqlQuery query;
+	query.prepare("update records set level = :level, review_time = :time where id = :id");
+	query.bindValue(":level", level);
+	query.bindValue(":time", QDateTime::currentDateTime());
+	query.bindValue(":id", record->id);
+	if (!query.exec())
+	{
+		QMessageBox::critical(this, "Error", query.lastError().text());
+		return;
+	}
+	m_model->setShowListType(-1);
 }
 
 void ReviewApp::on_actionAdd_triggered()
@@ -196,4 +214,3 @@ void ReviewApp::on_viewAnswerBtn_clicked(bool checked)
 {
 	ui.answerTextBox->setVisible(checked);
 }
-
