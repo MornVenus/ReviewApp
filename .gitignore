@@ -10,6 +10,7 @@
 *.class
 *.jar
 *.log
+*.filters
 
 bin/
 obj/
