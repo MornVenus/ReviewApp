@@ -167,7 +167,6 @@ public:
 
 	void append(PlainCard card)
 	{
-		
 		QSqlQuery query;
 		query.prepare(R"(INSERT INTO records (question, answer, category, tags) VALUES (:question, :answer, :category, :tags))");
 		query.bindValue(":question", card.question);
@@ -184,7 +183,8 @@ public:
 			qDebug() << "Record inserted successfully.";
 			if (m_showListType == ReviewCard::ShowListType::All)
 			{
-				ReviewCard* newCard = new ReviewCard{ 1, card.question, card.answer, card.category, card.tags, QDateTime::currentDateTime(), QDateTime::currentDateTime(), false, ReviewCard::OneDay };
+				QVariant id = query.lastInsertId();
+				ReviewCard* newCard = new ReviewCard{ id.toInt(), card.question, card.answer, card.category, card.tags, QDateTime::currentDateTime(), QDateTime::currentDateTime(), false, ReviewCard::OneDay};
 				beginInsertRows(QModelIndex(), m_cards.size(), m_cards.size());
 				m_cards.append(newCard);
 				endInsertRows();

@@ -18,6 +18,17 @@ public:
 		new CodeHighlighter(ui->markdownTextBox->document());
 	}
 
+	EditDialog(ReviewCard* card) : ui(new Ui::Dialog)
+	{
+		ui->setupUi(this);
+		ui->questionTextBox->setPlainText(card->question);
+		ui->answerTextBox->setPlainText(card->answer);
+		ui->categoryTextBox->setText(card->category);
+		ui->tagTextBox->setText(card->tags);
+
+		new CodeHighlighter(ui->markdownTextBox->document());
+	}
+
 	~EditDialog() {}
 
 	PlainCard getResult()

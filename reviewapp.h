@@ -40,5 +40,9 @@ private slots:
     void on_actionAdd_triggered();
 	void on_filterTextBox_textChanged(const QString& text) { m_filter->setFilterText(text); }
     void on_currentIndex_changed(const QModelIndex& current, const QModelIndex& previous);
+    void on_editBtn_clicked();
+	void on_deleteBtn_clicked();
+	void on_favBtn_clicked(bool checked);
+	void on_viewAnswerBtn_clicked();
 };
 

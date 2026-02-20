@@ -105,3 +105,53 @@ void ReviewApp::on_currentIndex_changed(const QModelIndex& current, const QModel
 	ui.answerTextBox->setMarkdown(card->answer);
 }
 
+void ReviewApp::on_editBtn_clicked()
+{
+	auto index = ui.cardListView->currentIndex();
+	if (!index.isValid()) return;
+
+	ReviewCard* card = index.data(Qt::UserRole + 1).value<ReviewCard*>();
+	EditDialog dialog(card);
+	dialog.setMinimumWidth(600);
+	dialog.setMinimumHeight(400);
+	if (dialog.exec())
+	{
+		auto result = dialog.getResult();
+		// update database
+		QSqlQuery query;
+		query.prepare(R"(update records set question = :question, answer = :answer, category = :category, tags = :tags where id = :id)");
+		query.bindValue(":question", result.question);
+		query.bindValue(":answer", result.answer);
+		query.bindValue(":category", result.category);
+		query.bindValue(":tags", result.tags);
+		query.bindValue(":id", card->id);
+
+		if (!query.exec())
+		{
+			qCritical() << "Failed to update record:" << query.lastError().text();
+		}
+		else
+		{
+			qDebug() << "Record updated successfully.";
+			card->question = result.question;
+			card->answer = result.answer;
+			card->category = result.category;
+			card->tags = result.tags;
+			ui.questionTextBox->setPlainText(card->question);
+			ui.answerTextBox->setMarkdown(card->answer);
+		}
+	}
+}
+
+void ReviewApp::on_deleteBtn_clicked()
+{
+}
+
+void ReviewApp::on_favBtn_clicked(bool checked)
+{
+}
+
+void ReviewApp::on_viewAnswerBtn_clicked()
+{
+}
+
