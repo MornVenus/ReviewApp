@@ -94,7 +94,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QTextEdit" name="answerTextBox"/>
+         <widget class="QTextEdit" name="answerTextBox">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label">

@@ -12,10 +12,53 @@ ReviewApp::ReviewApp(QWidget *parent)
 	group->addAction(ui.actionFav);
 	group->addAction(ui.actionTest);
 
-	m_model = new ReviewCardListModel(this);
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 
-	m_filter = new ReviewFilter(this);
+	QString appDir = QCoreApplication::applicationDirPath();
+	QString datebasePath = QDir(appDir).filePath("review.db");
+
+	bool dbFileExist = QFile(datebasePath).exists();
+	db.setDatabaseName(datebasePath);
+	if (db.open())
+	{
+		qDebug() << "Database opened successfully.";
+
+		if (!dbFileExist)
+		{
+			// create table
+			QSqlQuery query;
+			QString createTableSQL = R"(
+				CREATE TABLE records(
+					id integer primary key autoincrement,
+					question text not null,
+					answer text,
+					category text,
+					tags text,
+					level integer not null default(0),
+					create_time datetime not null default(datetime('now', 'localtime')),
+					review_time datetime not null default(datetime('now', 'localtime')),
+					fav integer default 0
+				)
+			)";
+			if (!query.exec(createTableSQL))
+			{
+				qCritical() << "Failed to create table records:" << query.lastError().text();
+			}
+			else
+			{
+				qDebug() << "Table records created successfully.";
+			}
+		}
+	}
+	else
+	{
+		qDebug() << "Failed to open database:" << db.lastError().text();
+	}
+
+	m_model = new ReviewCardListModel(this);
 	setShowListType(ReviewCard::Review); //  default is review list
+	m_filter = new ReviewFilter(this);
+	
 	m_filter->setSourceModel(m_model);
 
 	ui.cardListView->setModel(m_filter);
