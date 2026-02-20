@@ -100,9 +100,12 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="markdowntextedit.h" />
     <QtMoc Include="reviewfilter.h" />
     <QtMoc Include="editdialog.h" />
     <QtMoc Include="cardstyledelegate.h" />
+    <QtMoc Include="markdownplaintextedit.h" />
+    <QtMoc Include="codehighlighter.h" />
     <ClInclude Include="reviewcard.h" />
     <QtMoc Include="reviewcardlistmodel.h" />
   </ItemGroup>

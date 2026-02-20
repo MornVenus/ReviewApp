@@ -64,6 +64,15 @@
     <QtMoc Include="reviewfilter.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="markdowntextedit.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="markdownplaintextedit.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="codehighlighter.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

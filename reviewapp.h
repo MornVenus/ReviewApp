@@ -9,19 +9,22 @@
 #include <QActionGroup>
 #include "editdialog.h"
 #include <QMessageBox>
+#include <QItemSelectionModel>
+#include "codehighlighter.h"
 
-class reviewapp : public QMainWindow
+class ReviewApp : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    reviewapp(QWidget *parent = nullptr);
-    ~reviewapp();
+    ReviewApp(QWidget *parent = nullptr);
+    ~ReviewApp();
 
 private:
     Ui::reviewappClass ui;
     ReviewCardListModel* m_model;
     ReviewFilter* m_filter;
+	QItemSelectionModel* m_selectionModel;
 	CardStyleDelegate* m_delegate;
 
 private:
@@ -31,5 +34,6 @@ private slots:
 	//void on_actionAll_triggered() { setShowListType(ReviewCard::All); }
     void on_actionAdd_triggered();
 	void on_filterTextBox_textChanged(const QString& text) { m_filter->setFilterText(text); }
+    void on_currentIndex_changed(const QModelIndex& current, const QModelIndex& previous);
 };
 

@@ -3,6 +3,7 @@
 #include <QDialog>
 #include "ui_editdialog.h"
 #include "reviewcard.h"
+#include "codehighlighter.h"
 
 class EditDialog : public QDialog
 {
@@ -13,6 +14,8 @@ public:
 	EditDialog() :  ui(new Ui::Dialog)
 	{
 		ui->setupUi(this);
+
+		new CodeHighlighter(ui->markdownTextBox->document());
 	}
 
 	~EditDialog() {}
@@ -24,4 +27,9 @@ public:
 
 private:
 	Ui::Dialog* ui;
+private slots:
+	void on_answerTextBox_textChanged()
+	{
+		ui->markdownTextBox->setMarkdown(ui->answerTextBox->toPlainText());
+	}
 };

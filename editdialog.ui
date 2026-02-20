@@ -38,14 +38,14 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPlainTextEdit" name="answerTextBox">
+      <widget class="MarkdownPlainTextEdit" name="answerTextBox">
        <property name="placeholderText">
         <string>输入Markdown 格式的答案...</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QTextEdit" name="markdownTextBox">
+      <widget class="MarkdownTextEdit" name="markdownTextBox">
        <property name="readOnly">
         <bool>true</bool>
        </property>
@@ -127,6 +127,18 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MarkdownTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>markdowntextedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MarkdownPlainTextEdit</class>
+   <extends>QPlainTextEdit</extends>
+   <header>markdownplaintextedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
