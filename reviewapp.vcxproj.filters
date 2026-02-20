@@ -58,5 +58,14 @@
     <QtMoc Include="cardstyledelegate.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="editdialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="reviewfilter.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

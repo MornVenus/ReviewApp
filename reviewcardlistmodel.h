@@ -45,6 +45,14 @@ public:
 		m_cards.append(card2);
 	}
 
+	void append(PlainCard card)
+	{
+		ReviewCard* newCard = new ReviewCard{1, card.question, card.answer, card.category, card.tags, QDateTime::currentDateTime(), QDateTime::currentDateTime(), false, ReviewCard::OneDay };
+		beginInsertRows(QModelIndex(), m_cards.size(), m_cards.size());
+		m_cards.append(newCard);
+		endInsertRows();
+	}
+
 private:
 	QList<ReviewCard*> m_cards;
 	ReviewCard::ShowListType m_showListType;

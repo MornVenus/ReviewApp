@@ -148,6 +148,12 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionReview">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>复习</string>
    </property>
@@ -156,6 +162,9 @@
    </property>
   </action>
   <action name="actionAll">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>所有</string>
    </property>
@@ -164,6 +173,9 @@
    </property>
   </action>
   <action name="actionFav">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>收藏</string>
    </property>
@@ -172,6 +184,9 @@
    </property>
   </action>
   <action name="actionTest">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>测试</string>
    </property>

@@ -37,3 +37,12 @@ public:
 	bool fav;
 	ReviewLevel level;
 };
+
+class PlainCard
+{
+public:
+	QString question;
+	QString answer;
+	QString category;
+	QString tags;
+};
