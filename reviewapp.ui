@@ -61,6 +61,9 @@
             <property name="text">
              <string>收藏</string>
             </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item>

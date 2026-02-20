@@ -103,6 +103,7 @@ void ReviewApp::on_currentIndex_changed(const QModelIndex& current, const QModel
 
 	ui.questionTextBox->setPlainText(card->question);
 	ui.answerTextBox->setMarkdown(card->answer);
+	ui.favBtn->setChecked(card->fav);
 }
 
 void ReviewApp::on_editBtn_clicked()
@@ -148,10 +149,11 @@ void ReviewApp::on_deleteBtn_clicked()
 {
 	auto index = ui.cardListView->currentIndex();
 	if (!index.isValid()) return;
+	QModelIndex sourceIndex = m_filter->mapToSource(index);
+	if (!sourceIndex.isValid()) return;
 
 	if (QMessageBox::Ok == QMessageBox::warning(this, "Warning", "Are you sure you want to delete?"))
 	{
-		QModelIndex sourceIndex = m_filter->mapToSource(index);
 		QString error = m_model->remove(sourceIndex);
 		if (!error.isEmpty())
 		{
@@ -162,6 +164,26 @@ void ReviewApp::on_deleteBtn_clicked()
 
 void ReviewApp::on_favBtn_clicked(bool checked)
 {
+	auto index = ui.cardListView->currentIndex();
+	if (!index.isValid()) return;
+	QModelIndex sourceIndex = m_filter->mapToSource(index);
+	if (!sourceIndex.isValid()) return;
+
+	ReviewCard* card = sourceIndex.data(Qt::UserRole + 1).value<ReviewCard*>();
+	if (!card) return;
+	
+	QSqlQuery query;
+	query.prepare("update records set fav = :fav where id = :id");
+	query.bindValue(":fav", checked ? 1 : 0);
+	query.bindValue(":id", card->id);
+	if (!query.exec())
+	{
+		QMessageBox::critical(this, "Error", query.lastError().text());
+	}
+	else
+	{
+		card->fav = checked;
+	}
 }
 
 void ReviewApp::on_viewAnswerBtn_clicked()
