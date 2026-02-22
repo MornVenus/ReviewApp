@@ -46,23 +46,40 @@ public:
 		painter->setRenderHint(QPainter::TextAntialiasing, true);
 
 		// paint background
+		QColor background = QColor("#ffffff");
 		if (isSelected)
 		{
-			painter->setBrush(QColor("#2a634a"));
+			QColor selectedColor = QColor("#4a6fa5");
+			QLinearGradient gradient(contentRect.topLeft(), contentRect.bottomLeft());
+			gradient.setColorAt(0, selectedColor);
+			gradient.setColorAt(1, selectedColor.darker(110));
+			
+			painter->setBrush(gradient);
 			painter->setPen(Qt::NoPen);
 			painter->drawRoundedRect(contentRect, 10, 10);
+
 			textColor = opt.palette.highlightedText().color();
 			mutedColor = opt.palette.highlightedText().color().darker(150);
 		}
 		else if (isHovered)
 		{
-			painter->fillRect(opt.rect, opt.palette.base().color().lighter(110));
+			QColor hoverColor = QColor("#e2e8f0");
+			QLinearGradient gradient(contentRect.topLeft(), contentRect.bottomLeft());
+			gradient.setColorAt(0, hoverColor.lighter(105));
+			gradient.setColorAt(1, hoverColor);
+
+			painter->setBrush(gradient);
+			painter->setPen(Qt::NoPen);
+			painter->drawRoundedRect(contentRect, 10, 10);
+
 			textColor = opt.palette.text().color();
 			mutedColor = opt.palette.text().color().darker(150);
 		}
 		else
 		{
-			painter->fillRect(opt.rect, opt.palette.base().color().lighter(110));
+			painter->setPen(Qt::NoPen);
+			painter->setBrush(QColor("#ffffff"));
+			painter->drawRoundedRect(contentRect, 10, 10);
 			textColor = opt.palette.text().color();
 			mutedColor = opt.palette.text().color().darker(150);
 		}

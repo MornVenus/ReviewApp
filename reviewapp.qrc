@@ -1,4 +1,19 @@
 <RCC>
-    <qresource prefix="reviewapp">
+    <qresource prefix="/">
+        <file>images/add.png</file>
+        <file>images/all.png</file>
+        <file>images/delete.png</file>
+        <file>images/difficult.png</file>
+        <file>images/easy.png</file>
+        <file>images/edit.png</file>
+        <file>images/explore.png</file>
+        <file>images/fav.png</file>
+        <file>images/fav_selected.png</file>
+        <file>images/favi.png</file>
+        <file>images/normal.png</file>
+        <file>images/review.png</file>
+        <file>images/test.png</file>
+        <file>images/theme.png</file>
+        <file>themes/lighter.qss</file>
     </qresource>
 </RCC>

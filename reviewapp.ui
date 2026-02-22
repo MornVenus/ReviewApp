@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>951</width>
-    <height>625</height>
+    <width>1137</width>
+    <height>830</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
         <item>
          <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>记录列表:</string>
+           <string>记录列表</string>
           </property>
          </widget>
         </item>
@@ -53,6 +53,10 @@
             <property name="text">
              <string>编辑</string>
             </property>
+            <property name="icon">
+             <iconset resource="reviewapp.qrc">
+              <normaloff>:/images/edit.png</normaloff>:/images/edit.png</iconset>
+            </property>
            </widget>
           </item>
           <item>
@@ -66,7 +70,24 @@
             <property name="text">
              <string>删除</string>
             </property>
+            <property name="icon">
+             <iconset resource="reviewapp.qrc">
+              <normaloff>:/images/delete.png</normaloff>:/images/delete.png</iconset>
+            </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QPushButton" name="favBtn">
@@ -78,6 +99,10 @@
             </property>
             <property name="text">
              <string>收藏</string>
+            </property>
+            <property name="icon">
+             <iconset resource="reviewapp.qrc">
+              <normaloff>:/images/fav.png</normaloff>:/images/fav.png</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -95,6 +120,10 @@
             <property name="text">
              <string>查看答案</string>
             </property>
+            <property name="icon">
+             <iconset resource="reviewapp.qrc">
+              <normaloff>:/images/explore.png</normaloff>:/images/explore.png</iconset>
+            </property>
             <property name="checkable">
              <bool>true</bool>
             </property>
@@ -111,13 +140,16 @@
         </item>
         <item>
          <widget class="QPlainTextEdit" name="questionTextBox">
+          <property name="focusPolicy">
+           <enum>Qt::FocusPolicy::NoFocus</enum>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_3">
+         <widget class="QLabel" name="answerLabel">
           <property name="text">
            <string>答案:</string>
           </property>
@@ -125,6 +157,9 @@
         </item>
         <item>
          <widget class="QTextEdit" name="answerTextBox">
+          <property name="focusPolicy">
+           <enum>Qt::FocusPolicy::NoFocus</enum>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -150,6 +185,10 @@
             <property name="text">
              <string>困难</string>
             </property>
+            <property name="icon">
+             <iconset resource="reviewapp.qrc">
+              <normaloff>:/images/difficult.png</normaloff>:/images/difficult.png</iconset>
+            </property>
            </widget>
           </item>
           <item>
@@ -162,6 +201,10 @@
             </property>
             <property name="text">
              <string>一般</string>
+            </property>
+            <property name="icon">
+             <iconset resource="reviewapp.qrc">
+              <normaloff>:/images/normal.png</normaloff>:/images/normal.png</iconset>
             </property>
            </widget>
           </item>
@@ -176,7 +219,24 @@
             <property name="text">
              <string>简单</string>
             </property>
+            <property name="icon">
+             <iconset resource="reviewapp.qrc">
+              <normaloff>:/images/easy.png</normaloff>:/images/easy.png</iconset>
+            </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </item>
@@ -187,6 +247,9 @@
    </layout>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="movable">
+    <bool>false</bool>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -210,6 +273,10 @@
    <property name="checked">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="reviewapp.qrc">
+     <normaloff>:/images/review.png</normaloff>:/images/review.png</iconset>
+   </property>
    <property name="text">
     <string>复习</string>
    </property>
@@ -221,8 +288,12 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="reviewapp.qrc">
+     <normaloff>:/images/all.png</normaloff>:/images/all.png</iconset>
+   </property>
    <property name="text">
-    <string>所有</string>
+    <string>全部</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
@@ -231,6 +302,10 @@
   <action name="actionFav">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="reviewapp.qrc">
+     <normaloff>:/images/favi.png</normaloff>:/images/favi.png</iconset>
    </property>
    <property name="text">
     <string>收藏</string>
@@ -243,6 +318,10 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="reviewapp.qrc">
+     <normaloff>:/images/test.png</normaloff>:/images/test.png</iconset>
+   </property>
    <property name="text">
     <string>测试</string>
    </property>
@@ -251,6 +330,10 @@
    </property>
   </action>
   <action name="actionAdd">
+   <property name="icon">
+    <iconset resource="reviewapp.qrc">
+     <normaloff>:/images/add.png</normaloff>:/images/add.png</iconset>
+   </property>
    <property name="text">
     <string>添加</string>
    </property>
@@ -259,6 +342,10 @@
    </property>
   </action>
   <action name="actionTheme">
+   <property name="icon">
+    <iconset resource="reviewapp.qrc">
+     <normaloff>:/images/theme.png</normaloff>:/images/theme.png</iconset>
+   </property>
    <property name="text">
     <string>主题</string>
    </property>

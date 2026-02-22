@@ -13,6 +13,7 @@
 #include "codehighlighter.h"
 #include <QtSql>
 #include <QDebug>
+#include <QMenu>
 
 class ReviewApp : public QMainWindow
 {
@@ -33,6 +34,8 @@ private:
     void updateLevel(int increment);
     void setShowListType(int level);
     void enableControls(bool enable);
+    void updateFavBtnIcon(bool checked);
+    void setupThemeMenu();
 
 private slots:
 	void on_actionAll_triggered() { setShowListType(ReviewCard::All); }

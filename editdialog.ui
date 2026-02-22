@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>478</height>
+    <width>791</width>
+    <height>722</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,9 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">font-size: 11px;</string>
+     </property>
      <property name="text">
       <string>问题:</string>
      </property>
@@ -23,6 +26,12 @@
    </item>
    <item>
     <widget class="QPlainTextEdit" name="questionTextBox">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>200</height>
+      </size>
+     </property>
      <property name="placeholderText">
       <string>输入问题...</string>
      </property>
@@ -30,6 +39,9 @@
    </item>
    <item>
     <widget class="QLabel" name="label_2">
+     <property name="styleSheet">
+      <string notr="true">font-size: 11px;</string>
+     </property>
      <property name="text">
       <string>答案(Markdown):</string>
      </property>
@@ -46,6 +58,9 @@
      </item>
      <item>
       <widget class="MarkdownTextEdit" name="markdownTextBox">
+       <property name="focusPolicy">
+        <enum>Qt::FocusPolicy::NoFocus</enum>
+       </property>
        <property name="readOnly">
         <bool>true</bool>
        </property>
