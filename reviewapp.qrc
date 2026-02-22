@@ -15,5 +15,6 @@
         <file>images/test.png</file>
         <file>images/theme.png</file>
         <file>themes/lighter.qss</file>
+        <file>themes/template.qss</file>
     </qresource>
 </RCC>

@@ -4,6 +4,7 @@
 #include <QStyleOptionViewItem>
 #include <QPainter>
 #include "reviewcard.h"
+#include "theme.h"
 
 class CardStyleDelegate : public QStyledItemDelegate
 {
@@ -26,10 +27,12 @@ public:
 		ReviewCard* card = index.data(Qt::UserRole + 1).value<ReviewCard*>();
 		if (!card) return;
 
+		Theme theme = ThemeManager::instance()->getCurrentTheme();
+
 		bool isSelected = option.state & QStyle::State_Selected;
 		bool isHovered = option.state & QStyle::State_MouseOver;
-		QColor textColor = QColor("#000000");
-		QColor mutedColor = QColor("#666666");
+		QColor textColor = theme.text;
+		QColor mutedColor = theme.textMuted;
 
 		QStyleOptionViewItem opt = option;
 		initStyleOption(&opt, index);
@@ -46,10 +49,10 @@ public:
 		painter->setRenderHint(QPainter::TextAntialiasing, true);
 
 		// paint background
-		QColor background = QColor("#ffffff");
+		QColor background = theme.background;
 		if (isSelected)
 		{
-			QColor selectedColor = QColor("#4a6fa5");
+			QColor selectedColor = theme.selected;
 			QLinearGradient gradient(contentRect.topLeft(), contentRect.bottomLeft());
 			gradient.setColorAt(0, selectedColor);
 			gradient.setColorAt(1, selectedColor.darker(110));
@@ -63,7 +66,7 @@ public:
 		}
 		else if (isHovered)
 		{
-			QColor hoverColor = QColor("#e2e8f0");
+			QColor hoverColor = theme.hover;
 			QLinearGradient gradient(contentRect.topLeft(), contentRect.bottomLeft());
 			gradient.setColorAt(0, hoverColor.lighter(105));
 			gradient.setColorAt(1, hoverColor);
@@ -78,7 +81,7 @@ public:
 		else
 		{
 			painter->setPen(Qt::NoPen);
-			painter->setBrush(QColor("#ffffff"));
+			painter->setBrush(theme.surface);
 			painter->drawRoundedRect(contentRect, 10, 10);
 			textColor = opt.palette.text().color();
 			mutedColor = opt.palette.text().color().darker(150);

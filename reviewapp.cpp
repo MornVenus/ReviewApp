@@ -4,6 +4,7 @@ ReviewApp::ReviewApp(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
+	setupThemeMenu();
 	ui.mainToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 	ui.answerTextBox->setVisible(false);
 	ui.answerLabel->setVisible(false);
@@ -141,50 +142,51 @@ void ReviewApp::updateFavBtnIcon(bool checked)
 
 void ReviewApp::setupThemeMenu()
 {
-	QMenu* themeMenu = new QMenu("Theme", this);
+	QMenu* themeMenu = new QMenu("主题", this);
 
-	//ThemeManager* tm = ThemeManager::instance();
-	//QStringList themeNames = tm->getThemeNames();
+	ThemeManager* tm = ThemeManager::instance();
+	QStringList themeNames = tm->getThemeNames();
 
-	//QActionGroup* themeGroup = new QActionGroup(this);
-	//themeGroup->setExclusive(true);
+	QActionGroup* themeGroup = new QActionGroup(this);
+	themeGroup->setExclusive(true);
 
-	//Theme currentTheme = tm->getCurrentTheme();
+	Theme currentTheme = tm->getCurrentTheme();
 
-	//for (const QString& name : themeNames)
-	//{
-	//	Theme theme = tm->getTheme(name);
-	//	QAction* action = new QAction(theme.displayName, this);
-	//	action->setCheckable(true);
-	//	action->setData(name);
-	//	action->setToolTip(theme.description);
+	for (const QString& name : themeNames)
+	{
+		Theme theme = tm->getTheme(name);
+		QAction* action = new QAction(theme.displayName, this);
+		action->setCheckable(true);
+		action->setData(name);
+		action->setToolTip(theme.description);
 
-	//	if (name == currentTheme.name)
-	//	{
-	//		action->setChecked(true);
-	//	}
+		if (name == currentTheme.name)
+		{
+			action->setChecked(true);
+		}
 
-	//	connect(action, &QAction::triggered, this, [this, name]() {
-	//		ThemeManager::instance()->applyTheme(name);
-	//		ANIMATION_MANAGER->pulse(centralWidget(), 400);
-	//		});
+		connect(action, &QAction::triggered, this, [this, name]() {
+			ThemeManager::instance()->applyTheme(name);
+			});
 
-	//	themeGroup->addAction(action);
-	//	themeMenu->addAction(action);
-	//}
+		themeGroup->addAction(action);
+		themeMenu->addAction(action);
+	}
 
-	//// Add theme menu to toolbar
-	//QToolButton* themeBtn = new QToolButton(this);
-	//themeBtn->setText("Theme");
-	//themeBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-	//themeBtn->setMenu(themeMenu);
-	//themeBtn->setPopupMode(QToolButton::InstantPopup);
+	// Add theme menu to toolbar
+	QToolButton* themeBtn = new QToolButton(this);
+	QIcon icon;
+	icon.addFile(":/images/theme.png");
+	themeBtn->setIcon(icon);
+	themeBtn->setText("主题");
+	themeBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+	themeBtn->setMenu(themeMenu);
+	themeBtn->setPopupMode(QToolButton::InstantPopup);
 
-	//ui.mainToolBar->addSeparator();
-	//ui.mainToolBar->addWidget(themeBtn);
+	ui.mainToolBar->addWidget(themeBtn);
 
-	//// Connect theme change signal
-	//connect(tm, &ThemeManager::themeChanged, this, &ReviewApp::onThemeChanged);
+	// Connect theme change signal
+	connect(tm, &ThemeManager::themeChanged, this, &ReviewApp::onThemeChanged);
 }
 
 void ReviewApp::on_actionAdd_triggered()
@@ -307,4 +309,10 @@ void ReviewApp::on_viewAnswerBtn_clicked(bool checked)
 {
 	ui.answerTextBox->setVisible(checked);
 	ui.answerLabel->setVisible(checked);
+}
+
+void ReviewApp::onThemeChanged()
+{
+	Theme theme = ThemeManager::instance()->getCurrentTheme();
+	ui.statusBar->showMessage("Theme changed: " + theme.displayName, 2000);
 }

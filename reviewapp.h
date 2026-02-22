@@ -14,6 +14,8 @@
 #include <QtSql>
 #include <QDebug>
 #include <QMenu>
+#include "theme.h"
+#include <QToolButton>
 
 class ReviewApp : public QMainWindow
 {
@@ -52,5 +54,6 @@ private slots:
     void on_hardBtn_clicked() { updateLevel(-100); }
     void on_normalBtn_clicked() { updateLevel(-1); }
     void on_easyBtn_clicked() { updateLevel(1); }
+    void onThemeChanged();
 };
 

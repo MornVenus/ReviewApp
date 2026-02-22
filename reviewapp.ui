@@ -263,7 +263,6 @@
    <addaction name="separator"/>
    <addaction name="actionAdd"/>
    <addaction name="separator"/>
-   <addaction name="actionTheme"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionReview">
@@ -336,18 +335,6 @@
    </property>
    <property name="text">
     <string>添加</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
-   </property>
-  </action>
-  <action name="actionTheme">
-   <property name="icon">
-    <iconset resource="reviewapp.qrc">
-     <normaloff>:/images/theme.png</normaloff>:/images/theme.png</iconset>
-   </property>
-   <property name="text">
-    <string>主题</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
