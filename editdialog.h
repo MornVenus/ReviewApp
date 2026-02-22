@@ -4,6 +4,7 @@
 #include "ui_editdialog.h"
 #include "reviewcard.h"
 #include "codehighlighter.h"
+#include "theme.h"
 
 class EditDialog : public QDialog
 {
@@ -16,6 +17,21 @@ public:
 		ui->setupUi(this);
 
 		new CodeHighlighter(ui->markdownTextBox->document());
+
+		// Set monospace font - using display font
+		Theme theme = THEME_MANAGER->getCurrentTheme();
+		QFont font;
+		font.setFamily(theme.fontDisplay.isEmpty() ? "Consolas" : theme.fontDisplay);
+		font.setPointSize(12);
+		ui->questionTextBox->setFont(font);
+		ui->answerTextBox->setFont(font);
+		ui->markdownTextBox->setFont(font);
+
+		// Set Tab width
+		const int tabStop = 4;
+		QFontMetrics metrics(font);
+		ui->questionTextBox->setTabStopDistance(tabStop * metrics.horizontalAdvance(' '));
+		ui->answerTextBox->setTabStopDistance(tabStop * metrics.horizontalAdvance(' '));
 	}
 
 	EditDialog(ReviewCard* card) : ui(new Ui::Dialog)
@@ -27,6 +43,21 @@ public:
 		ui->tagTextBox->setText(card->tags);
 
 		new CodeHighlighter(ui->markdownTextBox->document());
+
+		// Set monospace font - using display font
+		Theme theme = THEME_MANAGER->getCurrentTheme();
+		QFont font;
+		font.setFamily(theme.fontDisplay.isEmpty() ? "Consolas" : theme.fontDisplay);
+		font.setPointSize(12);
+		ui->questionTextBox->setFont(font);
+		ui->answerTextBox->setFont(font);
+		ui->markdownTextBox->setFont(font);
+
+		// Set Tab width
+		const int tabStop = 4;
+		QFontMetrics metrics(font);
+		ui->questionTextBox->setTabStopDistance(tabStop * metrics.horizontalAdvance(' '));
+		ui->answerTextBox->setTabStopDistance(tabStop * metrics.horizontalAdvance(' '));
 	}
 
 	~EditDialog() {}

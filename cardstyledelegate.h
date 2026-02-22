@@ -106,6 +106,8 @@ public:
 
 		// paint category and tags
 		QStringList info;
+		info.append(card->reviewTime.toString("MM-dd hh:mm:ss"));
+
 		if (!card->category.isEmpty())
 		{
 			info.append(card->category);
@@ -118,7 +120,7 @@ public:
 		if (!info.isEmpty())
 		{
 			QString infoText = info.join(" | ");
-			if (infoText.length() > 55) infoText = infoText.left(55) + "...";
+			if (infoText.length() > 75) infoText = infoText.left(75) + "...";
 			QFont infoFont = painter->font();
 			infoFont.setPointSize(infoFont.pointSize() - 1);
 			infoFont.setBold(false);

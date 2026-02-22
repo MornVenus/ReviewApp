@@ -143,7 +143,7 @@ private:
         theme.gradientStart = QColor("#4a6fa5");
         theme.gradientEnd = QColor("#87ceeb");
 
-        theme.fontDisplay = "Cascadia Code";
+        theme.fontDisplay = "Segoe UI";
         theme.fontBody = "Segoe UI";
         theme.fontSize = 10;
         theme.isDark = false;

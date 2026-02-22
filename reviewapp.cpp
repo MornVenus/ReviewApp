@@ -73,7 +73,7 @@ ReviewApp::ReviewApp(QWidget *parent)
 	m_delegate = new CardStyleDelegate(this);
 	ui.cardListView->setItemDelegate(m_delegate);
 
-	connect(m_selectionModel, &QItemSelectionModel::currentChanged, this, &ReviewApp::on_currentIndex_changed);
+	connect(m_selectionModel, &QItemSelectionModel::currentRowChanged, this, &ReviewApp::on_currentIndex_changed);
 
 	new CodeHighlighter(ui.answerTextBox->document());
 }
