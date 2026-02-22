@@ -142,7 +142,7 @@ void ReviewApp::updateFavBtnIcon(bool checked)
 
 void ReviewApp::setupThemeMenu()
 {
-	QMenu* themeMenu = new QMenu("主题", this);
+	QMenu* themeMenu = new QMenu("Theme", this);
 
 	ThemeManager* tm = ThemeManager::instance();
 	QStringList themeNames = tm->getThemeNames();
@@ -178,7 +178,7 @@ void ReviewApp::setupThemeMenu()
 	QIcon icon;
 	icon.addFile(":/images/theme.png");
 	themeBtn->setIcon(icon);
-	themeBtn->setText("主题");
+	themeBtn->setText("Theme");
 	themeBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 	themeBtn->setMenu(themeMenu);
 	themeBtn->setPopupMode(QToolButton::InstantPopup);

@@ -207,6 +207,7 @@ QLabel
 {
     color: %7;
     background: transparent;
+    font-weight: bold;
 }
 
 /*QMenu*/
